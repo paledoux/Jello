@@ -4,6 +4,7 @@ import Animated, { divide } from "react-native-reanimated";
 import { useScrollHandler } from "react-native-redash";
 
 import Button from "../../components/Button";
+import { AuthNavigationProps } from "../Navigation";
 
 import Slide from "./Slide";
 import Dot from "./Dot";
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }: AuthNavigationProps<"Home">) => {
   const { scrollHandler, x } = useScrollHandler();
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -63,7 +64,7 @@ const Onboarding = () => {
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
         bounces={false}
-        style={{ paddingBottom: 100 }}
+        style={{ paddingBottom: 150 }}
         {...scrollHandler}
       >
         {slides.map(({ title, description, picture }, index) => {
@@ -80,7 +81,7 @@ const Onboarding = () => {
 
       <View
         style={{
-          marginVertical: 10,
+          marginBottom: 10,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
@@ -91,8 +92,16 @@ const Onboarding = () => {
         ))}
       </View>
       <View style={styles.actions}>
-        <Button label="SIGN UP" variant="secondary" onPress={() => true} />
-        <Button label="SIGN IN" variant="primary" onPress={() => true} />
+        <Button
+          label="SIGN UP"
+          variant="secondary"
+          onPress={() => navigation.navigate("SignUp")}
+        />
+        <Button
+          label="SIGN IN"
+          variant="primary"
+          onPress={() => navigation.navigate("Login")}
+        />
       </View>
     </View>
   );
