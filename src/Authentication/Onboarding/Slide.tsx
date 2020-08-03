@@ -1,10 +1,17 @@
 import React from "react";
-import { Text, View, Dimensions, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  Dimensions,
+  StyleSheet,
+  Image,
+  ImageSourcePropType,
+} from "react-native";
 
 interface SlideProps {
   title: string;
   description: string;
-  picture?: number;
+  picture: ImageSourcePropType;
 }
 
 const { width } = Dimensions.get("window");
@@ -15,6 +22,8 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Medium",
     color: "#414B5A",
     letterSpacing: 1,
+    alignSelf: "center",
+    paddingTop: 51,
   },
   description: {
     fontSize: 14,
@@ -27,18 +36,33 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   container: {
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     flex: 1,
     backgroundColor: "#FFF",
   },
 });
 
-const Slide = ({ title, description }: SlideProps) => {
+const Slide = ({ title, description, picture }: SlideProps) => {
   return (
     <View style={[styles.container, { width }]}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "flex-end",
+        }}
+      >
+        <Image source={picture} />
+      </View>
+
+      <View
+        style={{
+          justifyContent: "center",
+        }}
+      >
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </View>
     </View>
   );
 };

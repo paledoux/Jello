@@ -1,7 +1,9 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { StatusBar } from "react-native";
 
-import Onboarding from "./src/Authentication/Onboarding";
+import Onboarding, { assets } from "./src/Authentication/Onboarding";
 import { LoadAssets } from "./src/components";
 
 const fonts = {
@@ -23,8 +25,11 @@ const AuthenticationNavigator = () => {
 
 export default function App() {
   return (
-    <LoadAssets {...{ fonts }}>
-      <AuthenticationNavigator />
-    </LoadAssets>
+    <SafeAreaProvider>
+      <LoadAssets {...{ fonts, assets }}>
+        <StatusBar barStyle="dark-content" />
+        <AuthenticationNavigator />
+      </LoadAssets>
+    </SafeAreaProvider>
   );
 }
