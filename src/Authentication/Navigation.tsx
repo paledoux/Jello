@@ -15,16 +15,16 @@ type AuthenticationStackParamList = {
   SignUp: undefined;
 };
 
-const AuthenticationStack = createStackNavigator<
-  AuthenticationStackParamList
->();
-
 export interface AuthNavigationProps<
   RouteName extends keyof AuthenticationStackParamList
 > {
   navigation: StackNavigationProp<AuthenticationStackParamList, RouteName>;
   route: RouteProp<AuthenticationStackParamList, RouteName>;
 }
+
+const AuthenticationStack = createStackNavigator<
+  AuthenticationStackParamList
+>();
 
 export const AuthenticationNavigator = () => {
   return (

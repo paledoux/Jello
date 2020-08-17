@@ -2,6 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import AuthenticationHeader from "../components/AuthenticationHeader";
+import Link from "../components/Link";
+
+import { AuthNavigationProps } from "./Navigation";
 
 const styles = StyleSheet.create({
   title: {
@@ -17,11 +20,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignUp = () => {
+const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#0062CD" }}>
+      <AuthenticationHeader />
       <View style={{ flex: 0.22 }}>
-        <AuthenticationHeader />
         <View
           style={{
             flex: 1,
@@ -29,20 +32,26 @@ const SignUp = () => {
             marginTop: 10,
           }}
         >
-          <Text style={styles.title}>Welcome to Login</Text>
-          <Text style={styles.desc}>
-            Please fill E-mail & password to login your app account. Sign Up
-          </Text>
+          <Text style={styles.title}>Create your account</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.desc}>Do you already have an account ? </Text>
+            <Link onPress={() => navigation.navigate("Login")}>
+              <Text style={[styles.desc, { color: "#FFC33A" }]}>Sign In</Text>
+            </Link>
+          </View>
         </View>
       </View>
+
       <View
         style={{
-          flex: 0.78,
+          flex: 1,
           backgroundColor: "white",
           borderTopRightRadius: 40,
           borderTopLeftRadius: 40,
         }}
-      ></View>
+      >
+        <Text>Username</Text>
+      </View>
     </View>
   );
 };
