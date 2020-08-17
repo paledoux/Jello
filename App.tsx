@@ -1,9 +1,10 @@
 import * as React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "react-native";
+import { ThemeProvider } from "@shopify/restyle";
 
 import { assets } from "./src/Authentication/Onboarding";
-import { LoadAssets } from "./src/components";
+import { LoadAssets, theme } from "./src/components";
 import { AuthenticationNavigator } from "./src/Authentication/Navigation";
 
 const fonts = {
@@ -16,10 +17,12 @@ const fonts = {
 export default function App() {
   return (
     <SafeAreaProvider>
-      <LoadAssets {...{ fonts, assets }}>
-        <StatusBar barStyle="dark-content" />
-        <AuthenticationNavigator />
-      </LoadAssets>
+      <ThemeProvider theme={theme}>
+        <LoadAssets {...{ fonts, assets }}>
+          <StatusBar barStyle="dark-content" />
+          <AuthenticationNavigator />
+        </LoadAssets>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }

@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Dimensions, StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
 import Animated, { divide } from "react-native-reanimated";
 import { useScrollHandler } from "react-native-redash";
 
 import Button from "../../components/Button";
 import { AuthNavigationProps } from "../Navigation";
+import { Box } from "../../components/Theme";
 
 import Slide from "./Slide";
 import Dot from "./Dot";
@@ -46,25 +47,16 @@ export const assets = slides.map((slide) => slide.picture.src);
 
 const { width } = Dimensions.get("window");
 
-const styles = StyleSheet.create({
-  actions: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingBottom: 30,
-  },
-});
-
 const Onboarding = ({ navigation }: AuthNavigationProps<"Home">) => {
   const { scrollHandler, x } = useScrollHandler();
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <Box flex={1} backgroundColor="white">
       <Animated.ScrollView
         horizontal
         snapToInterval={width}
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
         bounces={false}
-        style={{ paddingBottom: 150 }}
         {...scrollHandler}
       >
         {slides.map(({ title, description, picture }, index) => {
@@ -79,19 +71,17 @@ const Onboarding = ({ navigation }: AuthNavigationProps<"Home">) => {
         })}
       </Animated.ScrollView>
 
-      <View
-        style={{
-          marginBottom: 10,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+      <Box
+        marginBottom="s"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
       >
         {slides.map((_, index) => (
           <Dot key={index} currentIndex={divide(x, width)} {...{ index }} />
         ))}
-      </View>
-      <View style={styles.actions}>
+      </Box>
+      <Box flexDirection="row" justifyContent="space-evenly" paddingBottom="l">
         <Button
           label="SIGN UP"
           variant="secondary"
@@ -102,8 +92,8 @@ const Onboarding = ({ navigation }: AuthNavigationProps<"Home">) => {
           variant="primary"
           onPress={() => navigation.navigate("Login")}
         />
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };
 

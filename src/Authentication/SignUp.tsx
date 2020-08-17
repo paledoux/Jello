@@ -1,58 +1,54 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
 
 import AuthenticationHeader from "../components/AuthenticationHeader";
 import Link from "../components/Link";
+import { Box, Text } from "../components/Theme";
+import { Button } from "../components";
 
 import { AuthNavigationProps } from "./Navigation";
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-    fontFamily: "Roboto-Medium",
-    color: "white",
-  },
-  desc: {
-    fontSize: 14,
-    fontFamily: "Roboto-Regular",
-    color: "white",
-    paddingVertical: 15,
-  },
-});
-
 const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
   return (
-    <View style={{ flex: 1, backgroundColor: "#0062CD" }}>
+    <Box flex={1} backgroundColor="primary">
       <AuthenticationHeader />
-      <View style={{ flex: 0.22 }}>
-        <View
-          style={{
-            flex: 1,
-            marginHorizontal: 20,
-            marginTop: 10,
-          }}
-        >
-          <Text style={styles.title}>Create your account</Text>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.desc}>Do you already have an account ? </Text>
-            <Link onPress={() => navigation.navigate("Login")}>
-              <Text style={[styles.desc, { color: "#FFC33A" }]}>Sign In</Text>
-            </Link>
-          </View>
-        </View>
-      </View>
 
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: "white",
-          borderTopRightRadius: 40,
-          borderTopLeftRadius: 40,
-        }}
+      <Box flex={0.22}>
+        <Box flex={1} marginHorizontal="m" marginTop="m">
+          <Text variant="title2">Create your account</Text>
+          <Box flexDirection="row">
+            <Text variant="onboardingDescription" marginTop="s">
+              Do you already have an account ?{" "}
+            </Text>
+            <Link onPress={() => navigation.navigate("Login")}>
+              <Text
+                variant="onboardingDescription"
+                color="secondary"
+                marginTop="s"
+              >
+                Sign In
+              </Text>
+            </Link>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box
+        flex={1}
+        backgroundColor="white"
+        borderTopLeftRadius="l"
+        borderTopRightRadius="l"
+        padding="l"
+        alignItems="center"
       >
         <Text>Username</Text>
-      </View>
-    </View>
+        <Button
+          label="Create account"
+          size="big"
+          variant="primary"
+          onPress={() => true}
+        />
+      </Box>
+    </Box>
   );
 };
 

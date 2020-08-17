@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Text,
-  View,
-  Dimensions,
-  StyleSheet,
-  Image,
-  ImageSourcePropType,
-} from "react-native";
+import { Dimensions, Image, ImageSourcePropType } from "react-native";
+
+import { Box, Text } from "../../components/Theme";
 
 interface SlideProps {
   title: string;
@@ -16,54 +11,34 @@ interface SlideProps {
 
 const { width } = Dimensions.get("window");
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 16,
-    fontFamily: "Roboto-Medium",
-    color: "#414B5A",
-    letterSpacing: 1,
-    alignSelf: "center",
-    paddingTop: 51,
-  },
-  description: {
-    fontSize: 14,
-    fontFamily: "Roboto-Regular",
-    color: "#B8BFC5",
-    paddingHorizontal: 30,
-    paddingVertical: 22,
-    textAlign: "center",
-    lineHeight: 22,
-    letterSpacing: 1,
-  },
-  container: {
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: "#FFF",
-  },
-});
-
 const Slide = ({ title, description, picture }: SlideProps) => {
   return (
-    <View style={[styles.container, { width }]}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "flex-end",
-        }}
-      >
+    <Box
+      width={width}
+      justifyContent="center"
+      alignItems="center"
+      flex={1}
+      backgroundColor="white"
+    >
+      <Box flex={0.6} justifyContent="flex-end">
         <Image source={picture} />
-      </View>
+      </Box>
 
-      <View
-        style={{
-          justifyContent: "center",
-        }}
+      <Box
+        flex={0.4}
+        justifyContent="flex-start"
+        alignItems="center"
+        paddingTop="xl"
       >
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>{description}</Text>
-      </View>
-    </View>
+        <Text variant="title">{title}</Text>
+        <Text
+          variant="onboardingDescription"
+          style={{ paddingHorizontal: 30, paddingTop: 22 }}
+        >
+          {description}
+        </Text>
+      </Box>
+    </Box>
   );
 };
 
