@@ -6,7 +6,10 @@ export const theme = createTheme({
     grey: "#B8BFC5",
     white: "#FFFFFF",
     primary: "#0062CD",
+    lightBlue: "#0059BA",
     secondary: "#FFC33A",
+    borderColor: "#DCDCDC",
+    red: "#E9421E",
   },
   spacing: {
     s: 8,
