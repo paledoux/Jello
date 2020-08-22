@@ -9,7 +9,7 @@ import Login from "./Login";
 import Onboarding from "./Onboarding";
 import SignUp from "./SignUp";
 
-type AuthenticationStackParamList = {
+export type AuthenticationStackParamList = {
   Home: undefined;
   Login: undefined;
   SignUp: undefined;

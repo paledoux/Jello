@@ -42,7 +42,6 @@ export const theme = createTheme({
       lineHeight: 22,
       letterSpacing: 1,
       color: "grey",
-      textAlign: "center",
     },
   },
 });

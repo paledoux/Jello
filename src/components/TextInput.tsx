@@ -1,28 +1,15 @@
 import React from "react";
 import { useTheme } from "@shopify/restyle";
 import { TextInput as RNTextInput } from "react-native-gesture-handler";
+import { TextInputProperties } from "react-native";
 
 import { Theme } from "./Theme";
 
-interface TextInputProps {
-  placeHolder: string;
-  onBlur: () => void;
-  onChange: (v: string) => void;
-  value: string;
-}
-
-const TextInput = ({
-  placeHolder,
-  onBlur,
-  onChange,
-  value,
-}: TextInputProps) => {
+const TextInput = (props: TextInputProperties) => {
   const theme = useTheme<Theme>();
   return (
     <RNTextInput
-      onBlur={onBlur}
-      onChangeText={(v) => onChange(v)}
-      value={value}
+      {...props}
       style={{
         width: 300,
         height: 55,
@@ -32,7 +19,6 @@ const TextInput = ({
         color: theme.colors.borderColor,
         paddingLeft: 20,
       }}
-      placeholder={placeHolder}
     />
   );
 };

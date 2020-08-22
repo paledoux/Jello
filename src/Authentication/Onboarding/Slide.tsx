@@ -33,6 +33,7 @@ const Slide = ({ title, description, picture }: SlideProps) => {
         <Text variant="title">{title}</Text>
         <Text
           variant="onboardingDescription"
+          textAlign="center"
           style={{ paddingHorizontal: 30, paddingTop: 22 }}
         >
           {description}
